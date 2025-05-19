@@ -9,7 +9,7 @@
 
     <?php include __DIR__ . '/../partials/navbar.php'; ?>
 
-    <main style="padding: 20px;">
+    <main class="container">
         <?= $content ?>
     </main>
 

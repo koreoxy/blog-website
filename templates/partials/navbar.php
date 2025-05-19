@@ -8,14 +8,21 @@ $navItems = [
 ];
 ?>
 
-<nav style="background-color: #007bff; padding: 10px;">
-    <ul style="list-style: none; display: flex; gap: 20px;">
+<nav class="container">
+    <div class="logo">
+        <img src="/assets/img/logo.svg" alt="logo">
+        <span href="">Koreophyte</span>
+    </div>
+    <ul class="link">  
         <?php foreach ($navItems as $key => $label): ?>
             <li>
-                <a href="/<?= $key ?>" style="color: white; text-decoration: <?= $currentPage === $key ? 'underline' : 'none' ?>;">
+                <a href="/<?= $key ?>" style="text-decoration: <?= $currentPage === $key ? 'underline' : 'none' ?>;">
                     <?= $label ?>
                 </a>
             </li>
         <?php endforeach; ?>
     </ul>
+    <a class="button">
+        <span class="button_top">Login</span>
+    </a>
 </nav>
