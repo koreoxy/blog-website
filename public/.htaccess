@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Pastikan file atau folder asli tidak diubah
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Semua route dialihkan ke index.php
+RewriteRule ^(.*)$ index.php?path=$1 [QSA,L]

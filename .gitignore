@@ -1,0 +1,16 @@
+# Composer vendor folder
+/vendor/
+
+# Environment file
+.env
+
+# Cache, logs, temp files
+/var/
+
+# IDE/editor folders
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
