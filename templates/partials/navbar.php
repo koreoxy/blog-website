@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+$isLoggedIn = isset($_SESSION['user']);
+$isAdmin = $isLoggedIn && $_SESSION['user']['role'] === 'admin';
+
 $uri = $_GET['path'] ?? '';
 $currentPage = $uri === '' ? 'home' : trim($uri, '/');
 
@@ -22,7 +27,13 @@ $navItems = [
             </li>
         <?php endforeach; ?>
     </ul>
-    <a class="button">
-        <span class="button_top">Login</span>
-    </a>
+    <?php if ($isLoggedIn): ?>
+        <a class="button" href="/dashboard/index">
+            <span class="button_top">Dashboard</span>
+        </a>
+    <?php else: ?>
+        <a class="button" href="/auth/login">
+            <span class="button_top">Login</span>
+        </a>
+    <?php endif; ?>
 </nav>

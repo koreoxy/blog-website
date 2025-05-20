@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-class HomeController
+class DashboardController
 {
     public function index()
     {
@@ -10,10 +10,10 @@ class HomeController
 
         // Data yang ingin dikirim ke view
         $data = [
-            'title' => 'Admin',
+            'title' => 'Dashboard',
         ];
 
         // Tampilkan halaman menggunakan sistem layout
-        render('home', $data, 'home');
+        render('dashboard/index', $data, 'dashboard');
     }
 }

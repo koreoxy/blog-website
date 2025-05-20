@@ -11,24 +11,45 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Ambil path dari URL seperti "/about"
+session_start();
+
+// Ambil path dari URL: contoh /auth/login
 $path = $_GET['path'] ?? '';
-$path = trim($path, '/'); // hilangkan '/' di awal/akhir
+$path = trim($path, '/');
 
-// Jika kosong, berarti ke home
-$page = $path === '' ? 'home' : $path;
+// Jika kosong, arahkan ke home/index
+$segments = explode('/', $path);
+$controllerName = $segments[0] ?? 'home';
+$methodName = $segments[1] ?? 'index';
 
-// Routing
+// Routing map: controller name => controller class
 $routes = [
-    'home'  => \App\Controller\HomeController::class,
-    'about' => \App\Controller\AboutController::class,
+    'home'      => \App\Controller\HomeController::class,
+    'about'     => \App\Controller\AboutController::class,
+    'auth'      => \App\Controller\AuthController::class,
+    'dashboard' => \App\Controller\DashboardController::class,
+    'logout'    => 'logout', // khusus logout
 ];
 
-if (array_key_exists($page, $routes)) {
-    $controllerClass = $routes[$page];
+// Handle logout secara khusus
+if ($controllerName === 'logout') {
+    session_destroy();
+    header('Location: /blog-website/public/auth/login');
+    exit;
+}
+
+if (array_key_exists($controllerName, $routes)) {
+    $controllerClass = $routes[$controllerName];
     $controller = new $controllerClass();
-    $controller->index();
+
+    // Jalankan method jika ada
+    if (method_exists($controller, $methodName)) {
+        $controller->$methodName();
+    } else {
+        http_response_code(404);
+        echo "404 - Method '$methodName' tidak ditemukan.";
+    }
 } else {
     http_response_code(404);
-    echo "404 - Halaman tidak ditemukan";
+    echo "404 - Halaman tidak ditemukan.";
 }

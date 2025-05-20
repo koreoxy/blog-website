@@ -12,6 +12,6 @@ class AboutController
             'title' => 'Tentang Kami',
         ];
 
-        render('about', $data);
+        render('about', $data, 'home');
     }
 }
