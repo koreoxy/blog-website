@@ -10,7 +10,7 @@ class HomeController
 
         // Data yang ingin dikirim ke view
         $data = [
-            'title' => 'Admin',
+            'title' => 'Home',
         ];
 
         // Tampilkan halaman menggunakan sistem layout

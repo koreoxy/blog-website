@@ -7,13 +7,14 @@
 </head>
 <body>
 
-    <?php include __DIR__ . '/../partials/sidebar.php'; ?>
+    <div class= "dashboard-container">
+        <?php include __DIR__ . '/../partials/sidebar.php'; ?>
 
-    <main class="container">
-        <?= $content ?>
-    </main>
+        <main class="content">
+            <?= $content ?>
+        </main>
 
-    
+    </div>
 
 </body>
 </html>

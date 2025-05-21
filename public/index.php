@@ -28,7 +28,7 @@ $routes = [
     'about'     => \App\Controller\AboutController::class,
     'auth'      => \App\Controller\AuthController::class,
     'dashboard' => \App\Controller\DashboardController::class,
-    'logout'    => 'logout', // khusus logout
+    'logout'    => 'logout',
 ];
 
 // Handle logout secara khusus

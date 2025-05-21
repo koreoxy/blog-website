@@ -2,21 +2,9 @@
 
 namespace App\Controller;
 
-class DashboardController
+class BlogController
 {
     public function index()
-    {
-        require_once __DIR__ . '/../../templates/render.php';
-
-        $data = [
-            'title' => 'Dashboard',
-        ];
-
-        // render('PATH OR LINK', $data, 'LAYOUTS')
-        render('dashboard/index', $data, 'dashboard');
-    }
-
-    public function blog()
     {
         require_once __DIR__ . '/../../templates/render.php';
 
