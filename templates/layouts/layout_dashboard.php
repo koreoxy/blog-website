@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title><?= $title ?? 'Admin' ?></title>
     <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/modal.css">
 </head>
 <body>
 
@@ -15,6 +16,8 @@
         </main>
 
     </div>
+
+    <script src="/assets/js/blog-form.js"></script>
 
 </body>
 </html>
