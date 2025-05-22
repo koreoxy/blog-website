@@ -10,6 +10,7 @@ class AuthController
 
     public function __construct()
     {
+        require_once __DIR__ . '/../Middlewares/middleware.php';
         require_once __DIR__ . '/../../templates/render.php';
         require __DIR__ . '/../../config/database.php';
         $this->pdo = $pdo;
@@ -18,6 +19,8 @@ class AuthController
 
     public function login()
     {
+        isGuestRedirectIfAuthenticated();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
@@ -38,7 +41,7 @@ class AuthController
                 if ($user['role'] === 'admin') {
                     header('Location: /dashboard/');
                 } else {
-                    header('Location: /');
+                    header('Location: /home');
                 }
                 exit;
             } else {
@@ -52,6 +55,8 @@ class AuthController
 
     public function register()
     {
+        isGuestRedirectIfAuthenticated();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'] ?? '';
             $email = $_POST['email'] ?? '';

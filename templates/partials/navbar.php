@@ -31,6 +31,9 @@ $navItems = [
         <a class="button" href="/dashboard/index">
             <span class="button_top">Dashboard</span>
         </a>
+        <a class="button" href="/logout">
+            <span class="button_top">Logout</span>
+        </a>
     <?php else: ?>
         <a class="button" href="/auth/login">
             <span class="button_top">Login</span>

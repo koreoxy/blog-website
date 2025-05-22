@@ -33,7 +33,7 @@ function isActive($path) {
       </a>
     </li>
     <li class="mobile-only">
-      <a href="<?= $base_url ?>/actions/logout.php" class="logout">
+      <a href="/logout" class="logout">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

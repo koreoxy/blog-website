@@ -155,3 +155,83 @@ body {
 .sidebar .logout {
   color: var(--green-dark);
 }
+
+/* ============================================== */
+
+/* FORM */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  background-color: var(--green-lightdark);
+  color: var(--white);
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+.action {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-top: 14px;
+}
+
+.btn-edit {
+  text-decoration: none;
+  font-weight: 500;
+  background-color: var(--primary);
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.btn-edit svg {
+  color: var(--white);
+  vertical-align: middle;
+  transition: stroke 0.2s ease;
+  width: 18px;
+  height: 18px;
+}
+.btn-edit:hover svg {
+  stroke: var(--bg-gray-light) !important;
+}
+
+.btn-delete {
+  background-color: var(--danger);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.btn-delete svg {
+  color: var(--white);
+  vertical-align: middle;
+  transition: stroke 0.2s ease;
+  width: 20px;
+  height: 20px;
+}
+.btn-delete:hover svg {
+  stroke: var(--bg-gray-light);
+}

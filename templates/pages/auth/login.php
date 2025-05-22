@@ -19,7 +19,7 @@
 </p>
 
 <p class="register-text">Kembali ke
-    <a href="<?= $base_url ?>/index.php">Beranda</a>
+    <a href="/home">Beranda</a>
 </p>
 
 

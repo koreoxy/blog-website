@@ -34,7 +34,7 @@ $routes = [
 // Handle logout secara khusus
 if ($controllerName === 'logout') {
     session_destroy();
-    header('Location: /blog-website/public/auth/login');
+    header('Location: /auth/login');
     exit;
 }
 
