@@ -100,4 +100,62 @@ class DashboardController
         }
     }
 
+    public function updateBlog()
+    {
+        require __DIR__ . '/../../config/database.php';
+        $blogModel = new \App\Model\BlogModel($pdo);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? null;
+            $title = $_POST['title'] ?? '';
+            $description = $_POST['description'] ?? '';
+            $date = $_POST['date'] ?? '';
+            $author = $_SESSION['user']['name'] ?? 'Anonymous';
+
+            $image = $_FILES['image'] ?? null;
+            $imageName = null;
+
+            if ($image && $image['error'] === UPLOAD_ERR_OK) {
+                $maxSize = 1048576;
+
+                if ($image['size'] <= $maxSize) {
+                    $imageName = time() . '_' . basename($image['name']);
+                    $uploadsDir = __DIR__ . '/../../public/uploads/';
+                    $targetPath = $uploadsDir . $imageName;
+
+                    FileHelper::ensureUploadsFolderExists($uploadsDir);
+
+                    if (!move_uploaded_file($image['tmp_name'], $targetPath)) {
+                        $_SESSION['message'] = [
+                            'type' => 'error',
+                            'text' => '❌ Gagal upload gambar.'
+                        ];
+                        header('Location: /dashboard/blog');
+                        exit;
+                    }
+                } else {
+                    $_SESSION['message'] = [
+                        'type' => 'error',
+                        'text' => '❌ Ukuran file tidak boleh lebih dari 1MB.'
+                    ];
+                    header('Location: /dashboard/blog');
+                    exit;
+                }
+            } else {
+                // Jika tidak upload gambar baru, ambil gambar lama
+                $existingBlog = $blogModel->getBlogById($id);
+                $imageName = $existingBlog['image'];
+            }
+
+            $success = $blogModel->updateBlog($id, $title, $description, $date, $author, $imageName);
+
+            $_SESSION['message'] = $success
+                ? ['type' => 'success', 'text' => '✅ Data blog berhasil diperbarui.']
+                : ['type' => 'error', 'text' => '❌ Gagal memperbarui data blog.'];
+
+            header('Location: /dashboard/blog');
+            exit;
+        }
+    }
+
 }
