@@ -158,4 +158,26 @@ class DashboardController
         }
     }
 
+    public function deleteBlog()
+    {
+        require __DIR__ . '/../../config/database.php';
+        $blogModel = new \App\Model\BlogModel($pdo);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? null;
+
+            if ($id) {
+                $success = $blogModel->deleteBlog($id);
+
+                $_SESSION['message'] = $success
+                    ? ['type' => 'success', 'text' => '✅ Blog berhasil dihapus.']
+                    : ['type' => 'error', 'text' => '❌ Gagal menghapus blog.'];
+            }
+
+            header('Location: /dashboard/blog');
+            exit;
+        }
+    }
+
+
 }

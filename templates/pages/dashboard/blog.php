@@ -75,9 +75,20 @@ endif;
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil-icon lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
                                     </span>
 
-                                    <span class="btn-delete">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                                    </span>
+                                  <!-- Tombol delete -->
+                                  <button type="button" class="btn-delete" title="Hapus" onclick="openDeleteModal(<?= $blog['id'] ?>)">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                          class="lucide lucide-trash2-icon lucide-trash-2">
+                                          <path d="M3 6h18"/>
+                                          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                          <line x1="10" x2="10" y1="11" y2="17"/>
+                                          <line x1="14" x2="14" y1="11" y2="17"/>
+                                      </svg>
+                                  </button>
+
                                 </div>
                             </td>
                         </tr>
@@ -91,6 +102,19 @@ endif;
         </table>
     </div>
 </div>
+
+<!-- Modal Delete -->
+<div id="deleteModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+        <p>Apakah Anda yakin ingin menghapus blog ini?</p>
+        <form id="deleteForm" method="POST" action="/dashboard/deleteBlog">
+            <input type="hidden" name="id" id="deleteBlogId">
+            <button type="submit" class="btn-confirm">Ya, Hapus</button>
+            <button type="button" class="btn-cancel" onclick="closeDeleteModal()">Batal</button>
+        </form>
+    </div>
+</div>
+
 
 <!-- Modal Add Blog -->
 <div id="addModal" class="modal">
@@ -167,4 +191,17 @@ endif;
     </form>
   </div>
 </div>
+
+<script>
+    // MESSAGE DELETE CONFIRM MODAL
+    function openDeleteModal(blogId) {
+        document.getElementById('deleteBlogId').value = blogId;
+        document.getElementById('deleteModal').style.display = 'flex';
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+</script>
+
 
